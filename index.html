@@ -13,143 +13,49 @@
             <div class="BalanceSec">
                 <div class="wallet">
                 <h4 id="BalanceTitle">Current Balance</h4>
-                <h2 id="CurrentBalcance">$000.00</h2>
+                <h2 id="CurrentBalcance">$00.00</h2>
                 </div>
                 <div class="InOutAmount">
                     <div class="inBalance">
                         <h4 id="Income">Deposite</h4>
-                        <p id="inAmount">$000</p>
+                        <p id="inAmount">$00.00</p>
                     </div>
                     <div class="OutBalance">
                         <h4 id="Out">Expense</h4>
-                    <p id="outAmount">$000</p>
+                    <p id="outAmount">$00.00</p>
                     </div>
                 </div>
             </div>
-            <div class="LowerPart">
 
-<!-- Records -->
-            <div class="history">
-                <h2>History:</h2>
-                <ul class="recordAmount">
-                   
-                </ul>
-            </div>
-            <!-- Transaction -->
+            <div class="LowerPart">
+                 <!-- Transaction -->
             <div class="newTransation">
                 <h2>New Transaction:</h2>
                 <label for="amountName">Name:</label>
                 <input type="text" id="amountName" required placeholder="Enter Name for you expense">
 
-                <label for="amountType">Amount:</label>
-                <input type="number" id="amountType" required placeholder="Enter amount" >
+                <label for="amountType">Amount: (-ve for Withdraw)</label>
+                <input type="number" id="amountType" required placeholder="Enter amountw)" >
                 <div class="buttons">
-                    <button title="Deposite Now" id="DepBtn">Deposite</button>
-                <button title="Withdraw Now" id="withBtn">Withdraw</button>
+                    <button title="Add?" onclick="addTransaction()" id="DepBtn">Add Record</button>
+                <!-- <button title="Withdraw Now" id="withBtn">Withdraw</button> -->
                 </div>
             </div>
+
+<!-- Records -->
+            <div class="history">
+                <h2>History: <span id="span" title="Clear history">Clear all</span></h2>
+                <ul class="recordAmount">
+                   
+                </ul>
+            </div>
+           
         </div>
 
         
         </div>
     </div>
 </body>
-<script>
-
-    const amountName = document.getElementById("amountName");
-    const amountType = document.getElementById("amountType");
-
-    const inAmount = document.getElementById("inAmount");
-    const outAmount = document.getElementById("outAmount");
-    const currentBalance = document.getElementById("CurrentBalcance");
-
-    const historyList = document.querySelector(".recordAmount");
-    const DepBtn = document.getElementById("DepBtn");
-    const withBtn = document.getElementById("withBtn");
-
-    // Initial values (you can change these if needed)
-    let incomeTotal = 0;
-    let expenseTotal = 0;
-    let balance = 0;
-
-    const amountValue = parseFloat(amountType.value);
-
-    DepBtn.addEventListener("click", ()=>{
-        incomeTotal +=amountValue;
-        balance +=amountValue;
-        currentBalance.textContent = `$${balance.toFixed(2)}`;
-
-        // Add to history
-        addToHistory(name, amountValue);
-        amountType.value = '';
-        amountName.value = '';
-        inAmount.textContent = `$${incomeTotal.toFixed(2)}`
-    })
-    
-    withBtn.addEventListener("click", ()=>{
-        expenseTotal += amountValue;
-        balance -=amountValue;
-        
-        amountType.value = '';
-        amountName.value = '';
-        currentBalance.textContent = `$${balance.toFixed(2)}`;
-        outAmount.textContent = `$${expenseTotal.toFixed(2)}`
-
-        // Add to history
-        addToHistory(name, amountValue);
-    })
-
-
-    // DepBtn.addEventListener("click", () => {
-    //     const name = amountName.value.trim();
-    //     // Basic validation
-    //     if (!name || isNaN(amountValue) || amountValue === 0) {
-    //         alert("Please enter a valid name and a non-zero number.");
-    //         return;
-    //     }
-
-    //     // Update values based on positive (deposit) or negative (expense)
-    //     if (amountValue > 0) {
-    //         incomeTotal += amountValue;
-    //         balance += amountValue;
-    //         inAmount.textContent = `$${incomeTotal.toFixed(2)}`;
-    //     } else {
-    //         expenseTotal += Math.abs(amountValue);
-    //         balance += amountValue; // since amountValue is negative
-    //         outAmount.textContent = `$${expenseTotal.toFixed(2)}`;
-    //     }
-
-    //     // Update balance display
-    //     currentBalance.textContent = `$${balance.toFixed(2)}`;
-
-    //     // Add to history
-    //     addToHistory(name, amountValue);
-
-    //     // Reset inputs
-    //     amountName.value = '';
-    //     amountType.value = '';
-    // });
-
-    function addToHistory(name, amount) {
-        const listItem = document.createElement("li");
-        listItem.textContent = name + " ";
-
-        const amountSpan = document.createElement("span");
-        amountSpan.textContent = (amount > 0 ? "+" : "") + amount.toFixed(2);
-        // amountSpan.style.justifyContent = "right";
-        // amountSpan.style.marginRight = '1rem';
-        // amountSpan.className = 'amountSpan'
-        listItem.appendChild(amountSpan);
-
-        historyList.appendChild(listItem);
-    }
-
-    function SAVE(){
-        
-    }
-    function GET(){
-
-    }
-
+<script src="j.js">
 </script>
 </html>
